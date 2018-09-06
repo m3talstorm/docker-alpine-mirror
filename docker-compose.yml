@@ -1,0 +1,16 @@
+
+version: '2.4'
+
+services:
+
+    mirror:
+        image: docker-alpine-mirror:latest
+        volumes:
+            - ./packages:/var/www/localhost/htdocs/alpine
+        ports:
+            - "8080:80"
+
+    rsync:
+        image: docker-alpine-rsync:latest
+        volumes_from:
+            - mirror
